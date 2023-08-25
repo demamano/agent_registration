@@ -254,7 +254,6 @@ class Register extends StatelessWidget {
                       // height: size.height * 0.002,
                       child: ElevatedButton(
                         onPressed: () {
-                          data = jsonDecode(formData);
                           registrationBloc.add(RegisterUser(
                             nonFileData: jsonDecode(formData),
                             tradePermission!,
