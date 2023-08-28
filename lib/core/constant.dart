@@ -60,20 +60,10 @@ class Constants {
   // shop color #bc982b
   // category #dd9933
   // static const cOlor1 = Color(0xffbc982b);
-  static const color2 = Colors.white;
+  static const color2 = Color.fromARGB(146, 11, 114, 162);
   static const hintstyling = Color.fromARGB(255, 206, 205, 205);
-
-  List<dynamic> profile = ['dema', 'demaamano@gmail.com', ''];
   static const colorGradient = LinearGradient(colors: [
     Color.fromARGB(255, 32, 37, 97),
     Color.fromARGB(255, 2, 16, 61)
   ]);
-  List<dynamic> userProfile = [
-    'firstname',
-    'lastname',
-    'middlename',
-    'gender',
-    'property_size',
-    ''
-  ];
 }

@@ -47,8 +47,8 @@ class CountryEvent extends RegistrationEvent {
 }
 
 class StateEvent extends RegistrationEvent {
-  final String state;
-  StateEvent(this.state);
+  final String states;
+  StateEvent(this.states);
 }
 
 class CityEvent extends RegistrationEvent {

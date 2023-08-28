@@ -1,8 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/io.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:dio/dio.dart';
 
 class RegistrationRepository {

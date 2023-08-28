@@ -26,7 +26,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     on<UserNameEvent>(_usernameEvent);
     on<PasswordEvent>(_passwordEvent);
     on<CountryEvent>(_countryEvent);
-    on<StateEvent>(_stateEvent);
+    on<StateEvent>(_statesEvent);
     on<CityEvent>(_cityEvent);
     on<PropertySizeEvent>(_propertySizeEvent);
     on<AgentTypeEvent>(_agentTypeEvent);
@@ -37,9 +37,11 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   void _firstNameEvent(FirstNameEvent event, Emitter<RegistrationState> emit) {
     print("my firstname is ${event.firstName}");
   }
+
   void _lastNameEvent(LastNameEvent event, Emitter<RegistrationState> emit) {
     print("my firstname is ${event.lastName}");
   }
+
   void _middleNameEvent(
       MiddleNameEvent event, Emitter<RegistrationState> emit) {
     print("my firstname is ${event.middleName}");
@@ -62,8 +64,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     print("my firstname is ${event.country}");
   }
 
-  void _stateEvent(StateEvent event, Emitter<RegistrationState> emit) {
-    print("my firstname is ${event.state}");
+  void _statesEvent(StateEvent event, Emitter<RegistrationState> emit) {
+    print("my firstname is ${event.states}");
   }
 
   void _phoneNumberEvent(
@@ -88,29 +90,3 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     print("my firstname is ${event.userId}");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// @override
-  // Stream<RegistrationState> mapEventToState(RegistrationEvent event) async* {
-    // if (event is RegisterUser) {
-    //   yield LoadingRegistrationState();
-    //   try {
-    //     await registrationRepository.registerUser(
-    //         event.nonFileData, event.id, event.tradePermission);
-    //     yield SuccessRegistrationState();
-    //   } catch (error) {
-    //     yield ErrorRegistrationState(error.toString());
-    //   }
-    // }
