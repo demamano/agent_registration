@@ -1,49 +1,65 @@
 import 'dart:io';
 
-import 'package:agent_registration/data/Repository/auth_repository.dart';
-import 'package:agent_registration/presentation/Register/bloc/bloc.dart';
-import 'package:agent_registration/presentation/auth/register.dart';
-import 'package:dio/dio.dart';
+import 'package:agent_registration/bloc_provider.dart';
+import 'package:agent_registration/presentation/Profile/profile.dart';
+import 'package:agent_registration/presentation/Profile/setting.dart';
+import 'package:agent_registration/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'presentation/admin/authentication/login.dart';
+import 'presentation/agent/Register/register.dart';
+
+import 'presentation/admin/dashboard_screen.dart';
 
 void main() {
-   HttpOverrides.global = MyHttpOverrides();
-  runApp(MyApp());
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(const MyApp());
 }
- class MyHttpOverrides extends HttpOverrides{
+
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  // final registerBloc = RegistrationBloc();
-  final RegistrationBloc registrationBloc = RegistrationBloc(
-      RegistrationRepository(
-          Dio(BaseOptions(baseUrl: 'https://192.168.56.1:3000', contentType: "multipart/form-data; boundary=<calculated when request is sent>",validateStatus: (status) => false,))));
+  const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-          brightness: Brightness.light),
-      home: BlocProvider<RegistrationBloc>(
-        create: (context) => registrationBloc,
-        child: Register(),
-      )
-      
-      
+    return MultiBlocProvider(
+      providers: AppBlocProvider.allBlocProviders,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        // theme: ThemeData.dark().copyWith(
+        //   scaffoldBackgroundColor: bgColor,
+        //   // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+        //   //     .apply(bodyColor: Colors.white),
+        //   canvasColor: secondaryColor,
+        // ),
+
+        home: const WelcomeScreen(),
+        // home: Register(),
+        // home: Register(),
+        // home:AdminLogin(),
+
+        initialRoute: '/',
+        routes: {
+          "/home": (context) => const Profile(),
+          "/admin-login": (context) => Login(),
+          "/dashboard": (context) => const DashboardScreen(),
+          "/register": (context) => const Register(),
+          "/profile": (context) => const Profile(),
+          '/setting': (context) => const SettingsPage()
+          // "/profile_admin": (context) => const AdminProfile(),
+        },
+      ),
     );
   }
 }
