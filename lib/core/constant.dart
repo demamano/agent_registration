@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static const String baseUrl = "192.168.56.1:3000";
+  static const String baseUrl = "https://192.168.56.1:3000";
 
   AppBar buildAppBar(function) {
     return AppBar(
@@ -60,20 +60,35 @@ class Constants {
   // shop color #bc982b
   // category #dd9933
   // static const cOlor1 = Color(0xffbc982b);
-  static const color2 = Colors.white;
+  static const color2 = Color.fromARGB(146, 11, 114, 162);
   static const hintstyling = Color.fromARGB(255, 206, 205, 205);
-
-  List<dynamic> profile = ['dema', 'demaamano@gmail.com', ''];
   static const colorGradient = LinearGradient(colors: [
     Color.fromARGB(255, 32, 37, 97),
     Color.fromARGB(255, 2, 16, 61)
   ]);
-  List<dynamic> userProfile = [
-    'firstname',
-    'lastname',
-    'middlename',
-    'gender',
-    'property_size',
-    ''
-  ];
+  InputDecoration decorate(String hint) {
+    return InputDecoration(
+      contentPadding: const EdgeInsets.all(
+        4.0,
+      ),
+      hintText: hint,
+      hintStyle: const TextStyle(color: Constants.hintstyling),
+      fillColor: Colors.white24,
+      filled: true,
+      enabledBorder: const OutlineInputBorder(
+        // borderSide: BorderSide(color: Constants.hintstyling),
+        borderRadius: BorderRadius.all(
+          Radius.circular(8.0),
+        ),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(8.0),
+        ),
+      ),
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Constants.hintstyling),
+      ),
+    );
+  }
 }
